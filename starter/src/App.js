@@ -18,8 +18,30 @@ function App() {
     await BooksAPI.update(book, shelf);
     await BooksAPI.getAll().then((res) => setBooks(res));
   };
+
+  /*
+  
+  RECHANGED !
+
+  The Search Result, has a listed books with no .shelf property.
+
+
+
+
+
+  */
   const queryProcess = async (search) => {
-    BooksAPI.search(search).then((res) => setQueryResult(res));
+    BooksAPI.search(search).then((res) => {
+      const handleShelf = res.map(booksSearch=>{
+        books.forEach(book => {
+          if(booksSearch.id === book.id){
+            booksSearch.shelf = book.shelf
+          }
+        });
+        return booksSearch
+      })
+      setQueryResult(handleShelf)
+    });
 
   };
   const querying = async (event) => {
