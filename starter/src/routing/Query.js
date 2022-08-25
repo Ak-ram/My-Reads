@@ -21,13 +21,20 @@ function Query({ queryingFunc, query, queryResult, shelf }) {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {queryResult instanceof Array ? (
+          {/* {queryResult instanceof Array ? (
             queryResult.map((book) => (
               <Book key={book.id} book={book} shelf={shelf} />
             ))
           ) : (
             <NotFound />
-          )}
+          )} */}
+          {
+            queryResult == false ? <NotFound />: (
+              queryResult.map((book) => (
+                <Book key={book.id} book={book} shelf={shelf} />
+              ))
+            )
+          }
         </ol>
       </div>
     </div>

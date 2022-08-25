@@ -32,15 +32,20 @@ function App() {
   */
   const queryProcess = async (search) => {
     BooksAPI.search(search).then((res) => {
-      const handleShelf = res.map(booksFromSearch=>{
-        books.forEach(bookAlreadyExistInMainPage => {
-          if(booksFromSearch.id === bookAlreadyExistInMainPage.id){
-            booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
-          }
-        });
-        return booksFromSearch
-      })
-      setQueryResult(handleShelf)
+      if(res instanceof Array) {
+        const handleShelf = res.map(booksFromSearch=>{
+          books.forEach(bookAlreadyExistInMainPage => {
+            if(booksFromSearch.id === bookAlreadyExistInMainPage.id){
+              booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
+            }
+          });
+          return booksFromSearch
+        })
+        setQueryResult(handleShelf)
+      }else{
+        console.log('not found');
+        setQueryResult([])
+      }
     });
 
   };
