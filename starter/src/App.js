@@ -56,7 +56,7 @@ no .shelf property, so to handle this, we need to:
       <div className="app">
         <Routes>
           <Route
-            path="/query"
+            path="/search"
             element={
               <Query
                 queryingFunc={querying}
