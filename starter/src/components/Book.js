@@ -19,6 +19,7 @@ function Book({ shelf, book }) {
                 shelf(book, e.target.value);
               }}
               value={book?.shelf}
+              defaultValue='none'
             >
               <option value="none" disabled>
                 Move to...
