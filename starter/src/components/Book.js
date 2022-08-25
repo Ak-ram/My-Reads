@@ -18,7 +18,7 @@ function Book({ shelf, book }) {
               onChange={(e) => {
                 shelf(book, e.target.value);
               }}
-              value={book?.shelf || 'none'}
+              value={book?.shelf}
             >
               <option value="none" disabled>
                 Move to...
@@ -34,8 +34,8 @@ function Book({ shelf, book }) {
         <div className="book-authors">{book?.authors?.join(' - ')}</div>
         {/* For just testing */}
         <div className="book-authors">
-          {/* {book.shelf ? book.shelf : "no shelf"} */}
-          {book.shelf}
+          {/* This works */}
+          {book.shelf ? book.shelf : "none"} 
         </div>
       </div>
     </li>

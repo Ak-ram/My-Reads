@@ -44,10 +44,9 @@ function App() {
               if (booksFromSearch.id === bookAlreadyExistInMainPage.id) {
                 booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
               }
-              else {
-                booksFromSearch.shelf = 'none'
-              }
-              return null;
+            // else booksFromSearch.shelf = 'none' 
+            // Issue is resolved in: ./components/Book.js line: 38
+            return null;
             });
             return booksFromSearch
           })
