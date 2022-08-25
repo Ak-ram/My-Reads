@@ -23,22 +23,23 @@ function App() {
   
   RECHANGED !
 
-  The Search Result, has a listed books with no .shelf property.
+Search process returned a list of books as a response, but these books come with 
+no .shelf property, so to handle this, we need to:
 
-
-
-
+1- Loop over all reponse returned books.
+2- Check the existance of each returned book in ['currently reading','want to read', 'read'] sections -- main page--
+3- If returned book already exist in the main page, then we set shelf property to it with the value that present in it's mirror in main page.
 
   */
   const queryProcess = async (search) => {
     BooksAPI.search(search).then((res) => {
-      const handleShelf = res.map(booksSearch=>{
-        books.forEach(book => {
-          if(booksSearch.id === book.id){
-            booksSearch.shelf = book.shelf
+      const handleShelf = res.map(booksFromSearch=>{
+        books.forEach(bookAlreadyExistInMainPage => {
+          if(booksFromSearch.id === bookAlreadyExistInMainPage.id){
+            booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
           }
         });
-        return booksSearch
+        return booksFromSearch
       })
       setQueryResult(handleShelf)
     });

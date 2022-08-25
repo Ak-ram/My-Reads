@@ -32,7 +32,8 @@ function Book({ shelf, book }) {
         </div>
         <div className="book-title">{book?.title}</div>
         <div className="book-authors">{book?.authors}</div>
-        <div className="book-shelf">
+        {/* For just testing */}
+        <div className="book-authors">
           {book.shelf ? book.shelf : "no shelf"}
         </div>
       </div>
