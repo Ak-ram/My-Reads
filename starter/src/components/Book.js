@@ -35,7 +35,8 @@ function Book({ shelf, book }) {
         <div className="book-authors">{book?.authors?.join(' - ')}</div>
         {/* For just testing */}
         <div className="book-authors">
-          {book.shelf ? book.shelf : "no shelf"}
+          {/* {book.shelf ? book.shelf : "no shelf"} */}
+          {book.shelf}
         </div>
       </div>
     </li>
