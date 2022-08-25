@@ -31,27 +31,33 @@ function App() {
     ❗ DO YOU HAVE ANOTHER SOLUTIONS? 🤔
   */
   const queryProcess = async (search) => {
-    BooksAPI.search(search).then((res) => {
-      console.log(res)
-      if (res instanceof Array) {
-        const handleShelf = res.map(booksFromSearch => {
-          books.find(bookAlreadyExistInMainPage => {
-            if (booksFromSearch.id === bookAlreadyExistInMainPage.id) {
-              booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
-            }
-            else {
-              booksFromSearch.shelf = 'none'
-            }
-            return null;
-          });
-          return booksFromSearch
-        })
-        setQueryResult(handleShelf)
-      } else {
-        console.log('not found');
-        setQueryResult([])
-      }
-    });
+    /* 
+    The (search.length > 0) condition below, is to fix this issue: POST https://reactnd-books-api.udacity.com/search 403
+    link: https://github.com/SherylHohman/ReactND-C2-Project1-MyReads/issues/1
+    */
+    if(search.length > 0){
+      BooksAPI.search(search).then((res) => {
+        console.log(res)
+        if (res instanceof Array) {
+          const handleShelf = res.map(booksFromSearch => {
+            books.find(bookAlreadyExistInMainPage => {
+              if (booksFromSearch.id === bookAlreadyExistInMainPage.id) {
+                booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
+              }
+              else {
+                booksFromSearch.shelf = 'none'
+              }
+              return null;
+            });
+            return booksFromSearch
+          })
+          setQueryResult(handleShelf)
+        } else {
+          console.log('not found');
+          setQueryResult([])
+        }
+      });
+    }
 
   };
   const querying = async (event) => {
