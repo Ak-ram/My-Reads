@@ -20,10 +20,11 @@ function Query({ queryingFunc, query, queryResult, shelf }) {
         </div>
       </div>
       <div className="search-books-results">
+      <div>{queryResult?.length} result{`${queryResult?.length === 1 ? '' : 's'}`}</div>
         <ol className="books-grid">
           
           {
-            queryResult == false ? <NotFound />: (
+            !queryResult?.length ? <NotFound />: (
               queryResult.map((book) => (
                 <Book key={book.id} book={book} shelf={shelf} />
               ))
