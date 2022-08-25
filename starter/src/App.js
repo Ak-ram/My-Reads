@@ -32,17 +32,22 @@ function App() {
   */
   const queryProcess = async (search) => {
     BooksAPI.search(search).then((res) => {
-      if(res instanceof Array) {
-        const handleShelf = res.map(booksFromSearch=>{
-          books.forEach(bookAlreadyExistInMainPage => {
-            if(booksFromSearch.id === bookAlreadyExistInMainPage.id){
+      console.log(res)
+      if (res instanceof Array) {
+        const handleShelf = res.map(booksFromSearch => {
+          books.find(bookAlreadyExistInMainPage => {
+            if (booksFromSearch.id === bookAlreadyExistInMainPage.id) {
               booksFromSearch.shelf = bookAlreadyExistInMainPage.shelf
             }
+            else {
+              booksFromSearch.shelf = 'none'
+            }
+            return null;
           });
           return booksFromSearch
         })
         setQueryResult(handleShelf)
-      }else{
+      } else {
         console.log('not found');
         setQueryResult([])
       }
@@ -74,9 +79,9 @@ function App() {
             path="/"
             element={<Home books={books} shelf={changeShelf} />}
           ></Route>
-        </Routes> 
+        </Routes>
       </div>
-     
+
     </Router>
   );
 }

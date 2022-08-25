@@ -18,8 +18,7 @@ function Book({ shelf, book }) {
               onChange={(e) => {
                 shelf(book, e.target.value);
               }}
-              // value={book?.shelf}  // Select elements must be either controlled or uncontrolled
-              defaultValue='none'
+              value={book?.shelf || 'none'}
             >
               <option value="none" disabled>
                 Move to...
