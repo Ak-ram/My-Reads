@@ -20,16 +20,15 @@ function App() {
   };
 
   /*
-  
   RECHANGED !
 
-Search process returned a list of books as a response, but these books come with 
-no .shelf property, so to handle this, we need to:
-
-1- Loop over all reponse returned books.
-2- Check the existance of each returned book in ['currently reading','want to read', 'read'] sections -- main page--
-3- If returned book already exist in the main page, then we set shelf property to it with the value that present in it's mirror in main page.
-
+  Search process returned a list of books as a response, but these books come with 
+  no .shelf property, so to handle this, we need to:
+    1- Loop over all reponse returned books.
+    2- Check the existance of each returned book in ['currently reading','want to read', 'read'] sections -- main page--
+    3- If returned book already exist in the main page, then we set shelf property to it with the value that present in it's mirror in main page.
+  
+    ❗ DO YOU HAVE ANOTHER SOLUTIONS? 🤔
   */
   const queryProcess = async (search) => {
     BooksAPI.search(search).then((res) => {
